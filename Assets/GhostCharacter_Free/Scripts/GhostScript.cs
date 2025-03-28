@@ -25,7 +25,7 @@ public class GhostScript : MonoBehaviour
     private Text HP_text;
 
     // moving speed
-    [SerializeField] private float Speed = 4;
+    [SerializeField] private float Speed = 100;
 
     void Start()
     {
@@ -153,32 +153,15 @@ public class GhostScript : MonoBehaviour
     //---------------------------------------------------------------------
     private void GRAVITY ()
     {
-        if(Ctrl.enabled)
-        {
-            if(CheckGrounded())
-            {
-                if(MoveDirection.y < -0.1f)
-                {
-                    MoveDirection.y = -0.1f;
-                }
-            }
+        
             MoveDirection.y -= 0.1f;
             Ctrl.Move(MoveDirection * Time.deltaTime);
-        }
+        
     }
     //---------------------------------------------------------------------
     // whether it is grounded
     //---------------------------------------------------------------------
-    private bool CheckGrounded()
-    {
-        if (Ctrl.isGrounded && Ctrl.enabled)
-        {
-            return true;
-        }
-        Ray ray = new Ray(this.transform.position + Vector3.up * 0.1f, Vector3.down);
-        float range = 0.2f;
-        return Physics.Raycast(ray, range);
-    }
+
     //---------------------------------------------------------------------
     // for slime moving
     //---------------------------------------------------------------------
